@@ -6,7 +6,10 @@ import { Person } from "../types/Person";
 import { Loader } from "../components/Loader";
 import { PersonLink } from "../components/PersonLink/PersonLink";
 
-const [people, setPeople] = useState<Person[]>([]);
+
+export const PeoplePage = () => {
+
+  const [people, setPeople] = useState<Person[]>([]);
 const [hasError, setHasError] = useState(false);
 const [isLoading, setIsLoading] = useState(true);
 const { slug } = useParams();
@@ -17,9 +20,6 @@ useEffect(() => {
     .catch(() => setHasError(true))
     .finally(() => setIsLoading(false));
 }, []);
-
-
-export const PeoplePage = () => {
 
   const getPersonByName = (name: string | null): Person | null => {
     if (!name) {
