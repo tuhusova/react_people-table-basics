@@ -15,10 +15,6 @@ export const PeopleList: React.FC<Props> = ({ persons, selectedSlug, PersonLinkC
     <div>
       <h1 className="title">People Page</h1>
 
-      <p data-cy="peopleLoadingError" className="has-text-danger">
-        Something went wrong
-      </p>
-
       {persons.length === 0 && (
         <p data-cy="noPeopleMessage">There are no people on the server</p>
 
@@ -43,7 +39,7 @@ export const PeopleList: React.FC<Props> = ({ persons, selectedSlug, PersonLinkC
           {persons.map(person => (
             <tr
               key={person.slug} data-cy="person"
-              className={cn({ 'has-text-danger': person.sex === 'f', 'has-background-warning': selectedSlug === person.slug })}>
+              className={cn({ 'has-background-warning': selectedSlug === person.slug })}>
             <td>
             <PersonLinkComponent person={person} />
             </td>
@@ -52,10 +48,17 @@ export const PeopleList: React.FC<Props> = ({ persons, selectedSlug, PersonLinkC
             <td>{person.born}</td>
             <td>{person.died}</td>
               <td>
-                {person.motherName ? <PersonLinkComponent person={getPersonByName(person.motherName)} /> : '-'}
+                {person.motherName ? getPersonByName(person.motherName)
+                  ? <PersonLinkComponent person={getPersonByName(person.motherName)} />
+                  : <span>{person.motherName}</span>
+                  : '-'}
               </td>
               <td>
-                {person.fatherName ? <PersonLinkComponent person={getPersonByName(person.fatherName)} /> : '-'}
+                {person.fatherName
+                  ? getPersonByName(person.fatherName)
+                  ? <PersonLinkComponent person={getPersonByName(person.fatherName)} />
+                  : <span>{person.fatherName}</span>
+                  : '-'}
               </td>
           </tr>
           ))

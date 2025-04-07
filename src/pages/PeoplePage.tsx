@@ -10,16 +10,16 @@ import { PersonLink } from "../components/PersonLink/PersonLink";
 export const PeoplePage = () => {
 
   const [people, setPeople] = useState<Person[]>([]);
-const [hasError, setHasError] = useState(false);
-const [isLoading, setIsLoading] = useState(true);
-const { slug } = useParams();
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const { slug } = useParams();
 
-useEffect(() => {
-  getPeople()
-    .then(setPeople)
-    .catch(() => setHasError(true))
-    .finally(() => setIsLoading(false));
-}, []);
+ useEffect(() => {
+   getPeople()
+     .then(setPeople)
+     .catch(() => setHasError(true))
+     .finally(() => setIsLoading(false));
+ }, []);
 
   const getPersonByName = (name: string | null): Person | null => {
     if (!name) {

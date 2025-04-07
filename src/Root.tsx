@@ -13,11 +13,11 @@ export const Root = () => (
   <HashRouter>
     <Routes>
       <Route path='/' element={<App />}>
-        <Route index element={<HomePage />}></Route>
-        <Route path='/home' element={<Navigate to='/' replace/>}></Route>
+        <Route index element={<HomePage />}/>
+        <Route path='home' element={<Navigate to='/' replace />}></Route>
 
-        <Route path='people'>
-          <Route path='people/:slug?' element={<PeoplePage />} />
+        <Route path='people' element={<PeoplePage />}>
+          <Route path=':slug?' element={<PeoplePage />} />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
 

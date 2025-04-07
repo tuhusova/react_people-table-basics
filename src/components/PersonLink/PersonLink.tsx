@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const PersonLink: React.FC<Props> = ({ person }) => {
-  if (!person || !person.name || !person.slug) {
+  if (!person) {
     return <span>-</span>;
   }
 
